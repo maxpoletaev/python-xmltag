@@ -1,8 +1,3 @@
-from .utils import render_tag
-
-SINGLE_TAGS = {'img', 'input', 'meta'}
-
-
 class Node:
     def __init__(self, document):
         self.doc = document
@@ -23,7 +18,7 @@ class Node:
         attrs = ', '.join('{}={}'.format(key, value) for key, value in self.attrs.items())
         return '{}({}{})'.format(self.__class__.__name__, self.tag_name, ', ' + attrs if attrs else '')
 
-    def is_last(self):
+    def _is_last(self):
         if self.parent_node:
             return self.index == len(self.parent_node.child_nodes)
         return True
@@ -40,15 +35,11 @@ class XmlNode(Node):
         inner = self.content or ''
         indent = self.doc.indent
         inner += ''.join([n.render() for n in self.child_nodes])
-
-        is_strict = self.doc.strict_mode
-        is_single = self.tag_name in SINGLE_TAGS
-        html = render_tag(self.tag_name, inner, attrs=self.attrs,
-                          _single=is_single, _strict=is_strict)
+        html = self.doc.render_tag(self.tag_name, inner, self.attrs)
 
         if indent:
             pretty_html = '\n' + (indent * self.level) + html
-            if self.is_last():
+            if self._is_last():
                 pretty_html += '\n' + indent * (self.level - 1)
             html = pretty_html
 
