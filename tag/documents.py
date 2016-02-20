@@ -19,9 +19,7 @@ class XMLDocument:
     def __getattr__(self, tag_name):
         def node_wrapper(content=None, _attrs={}, **attrs):
             _attrs.update(**attrs)
-            node = XmlNode(self, tag_name, _attrs)
-            node.content = content
-            return node
+            return XmlNode(self, tag_name, attrs=_attrs, content=content)
         return node_wrapper
 
     def render_tag(self, *args, **kwargs):
@@ -44,7 +42,7 @@ class HTMLDocument(XMLDocument):
 
     def render(self):
         html = super().render()
-        return self.doctype + (self.pretty and '\n' or '') + html
+        return self.doctype + (self.indent and '\n' or '') + html
 
 
 class XHTMLDocument(HTMLDocument):

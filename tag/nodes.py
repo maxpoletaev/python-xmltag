@@ -14,22 +14,29 @@ class Node:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.doc.current_node = self.parent_node
 
-    def __repr__(self):
-        attrs = ', '.join('{}={}'.format(key, value) for key, value in self.attrs.items())
-        return '{}({}{})'.format(self.__class__.__name__, self.tag_name, ', ' + attrs if attrs else '')
-
     def _is_last(self):
         if self.parent_node:
             return self.index == len(self.parent_node.child_nodes)
         return True
 
+    def append_to(self, node):
+        node.child_nodes.append(self)
+        return self
+
+    def remove(self):
+        self.parent_node.child_nodes.remove(self)
+
 
 class XmlNode(Node):
-    def __init__(self, document, tag_name, attrs=None):
+    def __init__(self, document, tag_name, content=None, attrs={}):
         super().__init__(document)
         self.tag_name = tag_name
         self.attrs = attrs
-        self.content = None
+        self.content = content
+
+    def __repr__(self):
+        attrs = ', '.join('{}={}'.format(key, value) for key, value in self.attrs.items())
+        return '{}({}{})'.format(self.__class__.__name__, self.tag_name, ', ' + attrs if attrs else '')
 
     def render(self):
         inner = self.content or ''
@@ -50,6 +57,9 @@ class TextNode(Node):
     def __init__(self, document, content):
         super().__init__(document)
         self.content = content
+
+    def __repr__(self):
+        return '{}({})'.format(self.__class__.__name__, self.content)
 
     def render(self):
         return self.content
