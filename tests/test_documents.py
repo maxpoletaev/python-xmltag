@@ -9,15 +9,16 @@ from tag.documents import (
 def mock_renderer():
     renderer = Mock()
 
-    def render_tag(tag, content, *args, **kwargs):
+    def render_tag(tag, content='', *args, **kwargs):
         return '<{t}>{c}</{t}>'.format(t=tag, c=content)
     renderer.render_tag = render_tag
+    return renderer
 
 
 class TestXMLDocument:
     def setup(self):
         self.doc = XMLDocument(root_tag='xml')
-        self.renderer = mock_renderer()
+        self.doc.renderer = mock_renderer()
 
     def test_tag(self):
         test.assert_equal(repr(self.doc.html()), 'XmlNode(html)')

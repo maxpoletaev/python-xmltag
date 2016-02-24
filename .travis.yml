@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+install:
+  - pip install -q coveralls
+  - pip install -q -r requirements.txt
+  - pip install -e .
+script: py.test --cov
+after_success: coveralls

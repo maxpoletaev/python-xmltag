@@ -1,0 +1,5 @@
+[run]
+source = tag
+
+[report]
+include = ./tag/*

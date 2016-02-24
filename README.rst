@@ -2,6 +2,10 @@
 Tag
 ===
 
+Tag — tool for easy creating XML and HTML documents in the Python style.
+
+**Note:** Tag is not full featured DOM manipulation library. If you have advanced DOM actions (such as move, clone, etc), use the lxml library.
+
 
 Example
 =======
