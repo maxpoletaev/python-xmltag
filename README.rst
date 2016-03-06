@@ -16,7 +16,7 @@ Tag — tool for easy creating XML and HTML documents in the Python style.
 Example
 =======
 
-::
+.. code-block:: python
 
     from tag import HTMLDocument
 
@@ -26,7 +26,7 @@ Example
         with doc.title('Document')
 
     with doc.body():
-        with doc.h1('Helo world!', class_="heading")
+        doc.h1('Helo world!', class_="heading")
         users = ['Marry', 'John', 'Bob']
         with doc.ul(id='user-list'):
             for name in users:

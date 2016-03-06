@@ -38,7 +38,6 @@ class Renderer:
             else:
                 if type(value) != str:
                     value = str(value)
-
                 if value.lower() in is_true:
                     if self.strict:
                         result.append('%s="%s"' % (key, key))
