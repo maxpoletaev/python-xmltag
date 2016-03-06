@@ -39,6 +39,16 @@ class TestNode:
         test.assert_false(child_one._is_last())
         test.assert_true(child_two._is_last())
 
+    def test_remove(self):
+        doc = mock_document()
+        root = XmlNode(doc, 'html')
+        child_node = XmlNode(doc, 'head')
+        root.child_nodes.append(child_node)
+        child_node.parent_node = root
+        test.assert_in(child_node, root.child_nodes)
+        child_node.remove()
+        test.assert_not_in(child_node, root.child_nodes)
+
 
 class TestXmlNode:
     def test_init(self):

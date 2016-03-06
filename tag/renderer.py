@@ -23,13 +23,10 @@ class Renderer:
 
     def render_attrs(self, attrs):
         result = []
-        is_true = ['true']
-        is_false = ['false', 'none', 'null']
+        is_true = set(['true'])
+        is_false = set(['false', 'none', 'null'])
 
         for key, value in attrs.items():
-            if key.startswith('_'):
-                key = key[1:]
-
             key = key.strip('_').replace('_', '-')
 
             if type(value) == bool:
@@ -47,8 +44,7 @@ class Renderer:
                         result.append('%s="%s"' % (key, key))
                     else:
                         result.append(key)
-
-                if value.lower() not in is_false:
+                elif value.lower() not in is_false:
                     result.append('%s="%s"' % (key, value))
 
         return ' '.join(result)
