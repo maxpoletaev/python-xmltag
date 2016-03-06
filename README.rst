@@ -23,7 +23,7 @@ Example
     doc = HTMLDocument()
 
     with doc.head():
-        with doc.title('Document')
+        doc.title('Document')
 
     with doc.body():
         doc.h1('Helo world!', class_="heading")

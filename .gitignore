@@ -1,4 +1,6 @@
 __pycache__
+dist
+drafts
 htmlcov
 *.egg-info
 *.pyc
