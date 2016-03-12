@@ -8,9 +8,7 @@ Tag
 .. image:: https://coveralls.io/repos/github/zenwalker/python-tag/badge.svg?branch=master
     :target: https://coveralls.io/github/zenwalker/python-tag?branch=master
 
-Tag — tool for easy creating XML and HTML documents in the Python style.
-
-**Note:** Tag is not full featured DOM manipulation library. If you have advanced DOM actions (such as move, clone, etc), use the lxml library.
+Tag — tool for easy creating XML and HTML documents in the Python style. Idea was taked form yattag_, but *tag* offers an improved features with less code (really, api is very small, just see source code).
 
 
 Example
@@ -33,3 +31,7 @@ Example
                 doc.li(name)
 
     print(doc.render())
+
+
+.. _yattag: http://www.yattag.org/
+.. _lxml: http://lxml.de/
