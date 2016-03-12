@@ -11,13 +11,20 @@ Tag
 Tag — tool for easy creating XML and HTML documents in the Python style. Idea was taked form yattag_, but *tag* offers an improved features with less code (really, api is very small, just see source code).
 
 
-Example
-=======
+Installation
+============
+
+::
+
+    $ pip install tag
+
+
+Usage example
+=============
 
 .. code-block:: python
 
     from tag import HTMLDocument
-
     doc = HTMLDocument()
 
     with doc.head():
