@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='tag',
-    version='1.0.1',
+    version='1.1.0',
     description='Tool for generating HTML and XML documents',
     keywords='html xml',
     packages=['tag'],
@@ -12,7 +12,7 @@ setup(
     license='BSD',
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
 )

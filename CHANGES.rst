@@ -2,7 +2,7 @@
 Changelog
 =========
 
-[Unreleased]
+1.1.0 - 2016-03-13
 ============
 
 - Add Layouts support
