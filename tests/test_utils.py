@@ -1,5 +1,5 @@
 from nose import tools as test
-from tag.utils import cdata
+from xmltag.utils import cdata
 
 
 def test_cdata():

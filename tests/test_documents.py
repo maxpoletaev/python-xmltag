@@ -1,6 +1,6 @@
 from unittest.mock import Mock
 from nose import tools as test
-from tag.documents import (
+from xmltag.documents import (
     XMLDocument, HTMLDocument, XHTMLDocument,
     HTML_DOCTYPE, XHTML_DOCTYPE,
 )

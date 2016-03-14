@@ -1,6 +1,6 @@
-from tag.nodes import DocumentRoot
+from xmltag.layout import Layout, LayoutError
+from xmltag.nodes import DocumentRoot
 from nose import tools as test
-from tag.layout import Layout, LayoutError
 from unittest.mock import Mock
 
 

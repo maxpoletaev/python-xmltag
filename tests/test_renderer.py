@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from tag.renderer import Renderer
+from xmltag.renderer import Renderer
 from nose import tools as test
 
 

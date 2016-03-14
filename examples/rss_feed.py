@@ -1,4 +1,4 @@
-from tag import XMLDocument
+from xmltag import XMLDocument
 from datetime import datetime
 from collections import namedtuple
 

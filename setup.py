@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-    name='tag',
+    name='xmltag',
     version='1.1.0',
     description='Tool for generating HTML and XML documents',
     keywords='html xml',
-    packages=['tag'],
+    packages=['xmltag'],
     author='Maxim Poletaev',
     author_email='max.poletaev@gmail.com',
     url='https://github.com/zenwalker/python-tag',

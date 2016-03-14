@@ -1,4 +1,4 @@
-from tag import HTMLDocument
+from xmltag import HTMLDocument
 
 doc = HTMLDocument()
 

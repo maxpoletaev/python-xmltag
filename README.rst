@@ -3,12 +3,12 @@ Tag
 ===
 
 .. image:: https://travis-ci.org/zenwalker/python-tag.svg?branch=master
-    :target: https://travis-ci.org/zenwalker/python-tag
+    :target: https://travis-ci.org/zenwalker/python-xmltag
 
 .. image:: https://coveralls.io/repos/github/zenwalker/python-tag/badge.svg?branch=master
-    :target: https://coveralls.io/github/zenwalker/python-tag?branch=master
+    :target: https://coveralls.io/github/zenwalker/python-xmltag?branch=master
 
-Tag — tool for easy creating XML and HTML documents in the Python style. Idea was taked form yattag_, but *tag* offers an improved features with less code (really, api is very small, just see source code).
+XMLTag — tool for easy creating XML and HTML documents in the Python style. Idea was taked form yattag_, but *xmltag* offers an improved features with less code (really, api is very small, just see source code).
 
 
 Installation
@@ -16,7 +16,7 @@ Installation
 
 ::
 
-    $ pip install tag
+    $ pip install xmltag
 
 
 Usage example
@@ -24,7 +24,7 @@ Usage example
 
 .. code-block:: python
 
-    from tag import HTMLDocument
+    from xmltag import HTMLDocument
     doc = HTMLDocument()
 
     with doc.head():

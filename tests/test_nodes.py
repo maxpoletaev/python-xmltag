@@ -1,4 +1,4 @@
-from tag.nodes import Node, XmlNode, TextNode, DocumentRoot
+from xmltag.nodes import Node, XmlNode, TextNode, DocumentRoot
 from unittest.mock import Mock
 from nose import tools as test
 

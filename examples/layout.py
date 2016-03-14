@@ -1,5 +1,4 @@
-from tag.layout import Layout
-from tag import HTMLDocument
+from xmltag import Layout, HTMLDocument
 
 
 class PageLayout(Layout):
