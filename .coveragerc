@@ -1,5 +1,5 @@
 [run]
-source = tag
+source = xmltag
 
 [report]
-include = ./tag/*
+include = ./xmltag/*
