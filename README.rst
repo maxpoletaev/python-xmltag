@@ -2,11 +2,17 @@
 Tag
 ===
 
-.. image:: https://travis-ci.org/zenwalker/python-tag.svg?branch=master
+.. image::
+    https://img.shields.io/pypi/v/xmltag.svg
+    :target: https://pypi.python.org/pypi/xmltag
+
+.. image::
+    https://travis-ci.org/zenwalker/python-xmltag.svg
     :target: https://travis-ci.org/zenwalker/python-xmltag
 
-.. image:: https://coveralls.io/repos/github/zenwalker/python-tag/badge.svg?branch=master
-    :target: https://coveralls.io/github/zenwalker/python-xmltag?branch=master
+.. image::
+    https://coveralls.io/repos/github/zenwalker/python-xmltag/badge.svg
+    :target: https://coveralls.io/github/zenwalker/python-xmltag
 
 XMLTag — tool for easy creating XML and HTML documents in the Python style. Idea was taked form yattag_, but *xmltag* offers an improved features with less code (really, api is very small, just see source code).
 
