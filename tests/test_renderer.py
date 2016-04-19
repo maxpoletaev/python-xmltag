@@ -6,7 +6,7 @@ from nose import tools as test
 class TestRenderer:
     def setup(self):
         single_tags = ['input', 'img']
-        self.renderer = Renderer(strict=False, single_tags=single_tags)
+        self.renderer = Renderer(strict_mode=False, single_tags=single_tags)
 
     def test_render_tag(self):
         result = self.renderer.render_tag('textarea')
@@ -38,7 +38,7 @@ class TestRenderer:
 class TestStrictRenderer:
     def setup(self):
         single_tags = ['input', 'img']
-        self.renderer = Renderer(strict=True, single_tags=single_tags)
+        self.renderer = Renderer(strict_mode=True, single_tags=single_tags)
 
     def test_render_tag(self):
         result = self.renderer.render_tag('textarea')

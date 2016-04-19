@@ -14,7 +14,7 @@ class XMLDocument:
         self.renderer = Renderer(**self.setup_renderer())
 
     def setup_renderer(self):
-        return dict(strict=True)
+        return dict(strict_mode=True)
 
     def __getattr__(self, tag_name):
         def node_wrapper(content=None, _attrs={}, **attrs):
@@ -38,7 +38,7 @@ class HTMLDocument(XMLDocument):
         self.doctype = doctype or ''
 
     def setup_renderer(self):
-        return dict(strict=False, single_tags=SINGLE_TAGS)
+        return dict(strict_mode=False, single_tags=SINGLE_TAGS)
 
     def render(self):
         html = super().render()
@@ -51,4 +51,4 @@ class XHTMLDocument(HTMLDocument):
         self.doctype = doctype or ''
 
     def setup_renderer(self):
-        return dict(strict=True, single_tags=SINGLE_TAGS)
+        return dict(strict_mode=True, single_tags=SINGLE_TAGS)

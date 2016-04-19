@@ -1,7 +1,7 @@
 class Renderer:
-    def __init__(self, strict, single_tags=[]):
+    def __init__(self, strict_mode=False, single_tags=[]):
         self.single_tags = set(single_tags)
-        self.strict = strict
+        self.strict_mode = strict_mode
 
     def render_tag(self, tag, content=None, attrs={}):
         is_single = tag in self.single_tags
@@ -11,13 +11,13 @@ class Renderer:
         if attrs:
             html += ' ' + attrs
 
-        html += ' />' if self.strict and (not content and is_single) else '>'
+        html += ' />' if self.strict_mode and (not content and is_single) else '>'
 
         if content:
             html += content
 
         if content or not is_single:
-            html += '</%s>' % tag
+            html += '</{}>'.format(tag)
 
         return html
 
@@ -31,19 +31,19 @@ class Renderer:
 
             if type(value) == bool:
                 if value:
-                    if self.strict:
-                        result.append('%s="%s"' % (key, key))
+                    if self.strict_mode:
+                        result.append('{}="{}"'.format(key, key))
                     else:
                         result.append(key)
             else:
                 if type(value) != str:
                     value = str(value)
                 if value.lower() in is_true:
-                    if self.strict:
-                        result.append('%s="%s"' % (key, key))
+                    if self.strict_mode:
+                        result.append('{}="{}"'.format(key, key))
                     else:
                         result.append(key)
                 elif value.lower() not in is_false:
-                    result.append('%s="%s"' % (key, value))
+                    result.append('{}="{}"'.format(key, value))
 
         return ' '.join(result)
