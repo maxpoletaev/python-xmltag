@@ -68,12 +68,13 @@ class TestXmlNode:
         node.child_nodes.append(body)
         test.assert_equal(node.render(), '<html><body>hello world</body></html>')
 
-    def _test_render_pretty(self):
+    def test_render_pretty(self):
         doc = mock_document()
         doc.indent = '..'
         node = XmlNode(doc, 'html')
+        node.level = 0
         node.child_nodes.append(XmlNode(doc, 'body'))
-        test.assert_equal(node.render(), '<html>\n..<body></body>\n</html>')
+        test.assert_equal(node.render(), '\n<html>\n..<body></body>\n</html>')
 
 
 class TestTextNode:
