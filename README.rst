@@ -14,7 +14,8 @@ XMLTag
     https://coveralls.io/repos/github/zenwalker/python-xmltag/badge.svg
     :target: https://coveralls.io/github/zenwalker/python-xmltag
 
-XMLTag — tool for easy creating XML and HTML documents in the Python style. Idea was taked form yattag_, but *xmltag* offers an improved features with less code (really, api is very small, just see source code).
+
+XMLTag — tool for easy creating XML and HTML documents in the Python style. Idea was taken from yattag_, but *xmltag* offers an improved features with less code (really, api is very small, just see source code).
 
 
 Installation
@@ -45,7 +46,25 @@ Usage example
 
     print(doc.render())
 
-More examples are in examples_ directory.
+More examples avaliable in examples_ directory.
+
+
+Different syntaxes
+==================
+
+You can write different XML-like documents, such as XML, HTML or XHTML. Just use one of these classes: ``XMLDocument``, ``HTMLDocument`` or ``XHTMLDocument``.
+
+.. code-block:: python
+
+    from xmltag import HTMLDocument, XHTMLDocument, XMLDocument
+
+    xhtml_doc = XHTMLDocument()
+    xml_doc.input(name="email")
+    print(xml_doc.render())  # <input name="email" />
+
+    html_doc = HTMLDocument()
+    html_doc.input(name="email")
+    print(xml_doc.render())  # <input name="email">
 
 
 Layouts
@@ -75,6 +94,8 @@ Following this actions you can inherit from ``PageLayout`` and define ``render_t
         def render_title(self, doc):
             doc.text('Hello World!')
 
+
+Then call ``Page().render()``. All placeholders that are defined in layout class will be filled with content.
 
 Escaping
 ========

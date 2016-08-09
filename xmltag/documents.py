@@ -18,8 +18,8 @@ class XMLDocument:
 
     def __getattr__(self, tag_name):
         def node_wrapper(content=None, _attrs={}, **attrs):
-            _attrs.update(**attrs)
-            return XmlNode(self, tag_name, attrs=_attrs, content=content)
+            merged_attrs = dict(_attrs.items() | attrs.items())
+            return XmlNode(self, tag_name, attrs=merged_attrs, content=content)
         return node_wrapper
 
     def render_tag(self, *args, **kwargs):

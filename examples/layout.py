@@ -12,7 +12,7 @@ class PageLayout(Layout):
         with doc.body():
             with doc.header():
                 self.define('header')
-            with doc.hav(class_='menu'):
+            with doc.nav(class_='menu'):
                 self.define('menu')
 
 
