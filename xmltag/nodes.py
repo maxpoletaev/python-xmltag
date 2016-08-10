@@ -1,3 +1,6 @@
+from html import escape
+
+
 class Node:
     def __init__(self, document):
         self.doc = document
@@ -28,10 +31,11 @@ class Node:
 
 
 class XmlNode(Node):
-    def __init__(self, document, tag_name, content=None, attrs={}):
+    def __init__(self, document, tag_name, content=None, escape=True, attrs={}):
         super().__init__(document)
         self.tag_name = tag_name
         self.attrs = attrs
+        self.escape = escape
         self.content = content
 
     def __repr__(self):
@@ -39,8 +43,10 @@ class XmlNode(Node):
         return '{}({}{})'.format(self.__class__.__name__, self.tag_name, ', ' + attrs if attrs else '')
 
     def render(self):
-        inner = self.content or ''
         indent = self.doc.indent
+        inner = self.content or ''
+        if self.escape:
+            inner = escape(inner, quote=False)
         inner += ''.join([n.render() for n in self.child_nodes])
         html = self.doc.render_tag(self.tag_name, inner, self.attrs)
 
@@ -54,14 +60,17 @@ class XmlNode(Node):
 
 
 class TextNode(Node):
-    def __init__(self, document, content):
+    def __init__(self, document, content, escape=True):
         super().__init__(document)
         self.content = content
+        self.escape = escape
 
     def __repr__(self):
         return '{}({})'.format(self.__class__.__name__, self.content)
 
     def render(self):
+        if self.escape:
+            return escape(self.content, quote=False)
         return self.content
 
 
@@ -75,3 +84,4 @@ class DocumentRoot(XmlNode):
         self.attrs = attrs
         self.content = None
         self.index = 0
+        self.escape = True
