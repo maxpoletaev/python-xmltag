@@ -97,18 +97,16 @@ Following this actions you can inherit from ``PageLayout`` and define ``render_t
 
 Then call ``Page().render()``. All placeholders that are defined in layout class will be filled with content.
 
+
 Escaping
 ========
 
-XMLTag does not provide escaping content by default.
-You should manualy escape unsafe content for example using ``html.escape``.
+XMLTag provide escaping content by default.
+Add ``safe=True`` if you don't need it.
 
 .. code-block:: python
-    import xmltag
-    import html
 
-    with doc.div(class_='user-comment'):
-        doc.text(html.escape(unescaped_text))
+    with doc.div(unescaped_text, safe=True)
 
 
 .. _yattag: http://www.yattag.org/

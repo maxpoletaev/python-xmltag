@@ -7,6 +7,7 @@ with doc.head():
 
 with doc.body():
     doc.h1('Helo world!', class_="heading")
+
     users = ['Marry', 'John', 'Bob']
     with doc.ul(id='user-list'):
         for name in users:
