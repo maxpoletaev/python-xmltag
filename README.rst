@@ -106,7 +106,7 @@ Add ``safe=True`` if you don't need it.
 
 .. code-block:: python
 
-    with doc.div(unescaped_text, safe=True)
+    doc.div(unescaped_text, safe=True)
 
 
 .. _yattag: http://www.yattag.org/
