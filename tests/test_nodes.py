@@ -80,6 +80,8 @@ class TestXmlNode:
         doc = mock_document()
         node = XmlNode(doc, 'body', content='<div>"hello"</div>')
         test.assert_equal(node.render(), '<body>&lt;div&gt;"hello"&lt;/div&gt;</body>')
+        node = XmlNode(doc, 'body', content='<div>"hello"</div>', safe=True)
+        test.assert_equal(node.render(), '<body><div>"hello"</div></body>')
 
 
 class TestTextNode:
@@ -93,6 +95,8 @@ class TestTextNode:
     def test_render_escape(self):
         node = TextNode(self.doc, '<div>"hello"</div>')
         test.assert_equal(node.render(), '&lt;div&gt;"hello"&lt;/div&gt;')
+        node = TextNode(self.doc, '<div>"hello"</div>', safe=True)
+        test.assert_equal(node.render(), '<div>"hello"</div>')
 
     def test_repr(self):
         node = TextNode(self.doc, 'hello world')
