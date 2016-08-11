@@ -1,3 +1,5 @@
+from io import StringIO
+
 class Renderer:
     def __init__(self, strict_mode=False, single_tags=[]):
         self.single_tags = set(single_tags)
@@ -6,25 +8,32 @@ class Renderer:
     def render_tag(self, tag, content=None, attrs={}):
         is_single = tag in self.single_tags
         attrs = self.render_attrs(attrs)
-        html = '<' + tag
+
+        buf = []
+        buf.append('<')
+        buf.append(tag)
 
         if attrs:
-            html += ' ' + attrs
+            buf.append(' ')
+            buf.append(attrs)
 
-        html += ' />' if self.strict_mode and (not content and is_single) else '>'
+        if self.strict_mode and (is_single and not content):
+            buf.append(' />')
+        else:
+            buf.append('>')
 
         if content:
-            html += content
+            buf.append(content)
 
         if content or not is_single:
-            html += '</{}>'.format(tag)
+            buf.append('</{}>'.format(tag))
 
-        return html
+        return ''.join(buf)
 
     def render_attrs(self, attrs):
         result = []
-        is_true = set(['true'])
-        is_false = set(['false', 'none', 'null'])
+        is_true = {'true'}
+        is_false = {'false', 'none', 'null'}
 
         for key, value in attrs.items():
             key = key.strip('_').replace('_', '-')
