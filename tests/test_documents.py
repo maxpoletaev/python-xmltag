@@ -1,8 +1,10 @@
 from unittest.mock import Mock
 from nose import tools as test
 from xmltag.documents import (
-    XMLDocument, HTMLDocument, XHTMLDocument,
-    HTML_DOCTYPE, XHTML_DOCTYPE,
+    XMLDocument,
+    HTMLDocument,
+    XHTMLDocument,
+    doctypes,
 )
 
 
@@ -37,7 +39,8 @@ class TestHTMLDocument:
         self.doc = HTMLDocument()
 
     def test_render(self):
-        test.assert_equal(self.doc.render(), '{}\n<html></html>'.format(HTML_DOCTYPE))
+        expect = '{}\n<html></html>'.format(doctypes['html5'])
+        test.assert_equal(self.doc.render(), expect)
 
 
 class TestXHTMLDocument:
@@ -45,4 +48,5 @@ class TestXHTMLDocument:
         self.doc = XHTMLDocument()
 
     def test_render(self):
-        test.assert_equal(self.doc.render(), '{}\n<html></html>'.format(XHTML_DOCTYPE))
+        expect = '{}\n<html></html>'.format(doctypes['xhtml'])
+        test.assert_equal(self.doc.render(), expect)

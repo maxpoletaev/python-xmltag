@@ -1,9 +1,11 @@
 from .nodes import XmlNode, TextNode, DocumentRoot
 from .renderer import Renderer
 
-SINGLE_TAGS = {'meta', 'input', 'img', 'br'}
-XHTML_DOCTYPE = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'
-HTML_DOCTYPE = '<!DOCTYPE html>'
+doctypes = {
+    'xhtml': '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">',
+    'html4': '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">',
+    'html5': '<!DOCTYPE html>',
+}
 
 
 class XMLDocument:
@@ -11,10 +13,10 @@ class XMLDocument:
         self.current_node = DocumentRoot(self, root_tag, attrs)
         self.indent = '  ' if pretty else None
         self.root_node = self.current_node
-        self.renderer = Renderer(**self.setup_renderer())
+        self.renderer = self.get_renderer()
 
-    def setup_renderer(self):
-        return dict(strict_mode=True)
+    def get_renderer(self):
+        return Renderer(strict_mode=True)
 
     def __getattr__(self, tag_name):
         def node_wrapper(content=None, _attrs={}, **attrs):
@@ -33,12 +35,13 @@ class XMLDocument:
 
 
 class HTMLDocument(XMLDocument):
-    def __init__(self, root_tag='html', doctype=HTML_DOCTYPE, *args, **kwargs):
+    def __init__(self, root_tag='html', doctype='html5', *args, **kwargs):
         super().__init__(root_tag, *args, **kwargs)
-        self.doctype = doctype or ''
+        self.doctype = doctypes.get(doctype, doctype) or ''
 
-    def setup_renderer(self):
-        return dict(strict_mode=False, single_tags=SINGLE_TAGS)
+    def get_renderer(self):
+        single_tags = {'meta', 'input', 'img', 'br'}
+        return Renderer(strict_mode=False, single_tags=single_tags)
 
     def render(self):
         html = super().render()
@@ -46,9 +49,10 @@ class HTMLDocument(XMLDocument):
 
 
 class XHTMLDocument(HTMLDocument):
-    def __init__(self, root_tag='html', doctype=XHTML_DOCTYPE, *args, **kwargs):
+    def __init__(self, root_tag='html', doctype='xhtml', *args, **kwargs):
         super().__init__(root_tag, *args, **kwargs)
-        self.doctype = doctype or ''
+        self.doctype = doctypes.get(doctype, doctype) or ''
 
-    def setup_renderer(self):
-        return dict(strict_mode=True, single_tags=SINGLE_TAGS)
+    def get_renderer(self):
+        single_tags = {'meta', 'input', 'img', 'br'}
+        return Renderer(strict_mode=True, single_tags=single_tags)
