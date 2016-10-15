@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='xmltag',
-    version='1.3.0',
+    version='1.3.1',
     description='Tool for generating HTML and XML documents',
     keywords='html xml',
     packages=['xmltag'],

@@ -1,5 +1,3 @@
-from io import StringIO
-
 class Renderer:
     def __init__(self, strict_mode=False, single_tags=[]):
         self.single_tags = set(single_tags)

@@ -2,7 +2,13 @@
 Changelog
 =========
 
+1.3.1 - 2016-11-15
+==================
+
+- Remove unused imports
+
 1.3.0 - 2016-08-11
+==================
 
 - Escape content by default
 - Improve rendering perfomance
